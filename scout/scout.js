@@ -1,13 +1,14 @@
 'use strict';
 const sms_helper = require('./sms');
 const scouts = require('./scouts');
+
 const {sleep} = require('./utils')
 
 const REPORT_TO_PHONES = process.env.REPORT_TO_PHONES.split(",")
 
 async function startScoutLoop(){
   const scout_keys = Object.keys(scouts)
-  console.log('\x1b[34%s\x1b[0m', `Scouts ready: ${scout_keys.join(" ")}`)
+  console.log('\x1b[34m%s\x1b[0m', `Scouts ready: ${scout_keys.join(" ")}`)
   const reporting_to = REPORT_TO_PHONES.map(p => p.substr(-4))
   console.log('\x1b[34m%s\x1b[0m', `Reporting to: ${reporting_to.join(" ")}`)
   console.log('\x1b[33m%s\x1b[0m', `🕵️  Gathering intel ...`)
@@ -23,13 +24,16 @@ async function startScoutLoop(){
       })
   
       if(found_items.length){
-        // console.log('\x1b[32m%s\x1b[0m', 'GOTEEM')
         found_items.forEach(item => {
           if(!sentLinks.includes(item.link)){
-            // REPORT_TO_PHONES.forEach(phone => {
-            //   sms_helper.send(phone, `${item.title} at ${item.link}`)
-            // })
-            console.log(item)
+            if(scout_keys[i]=="heartbeat"){
+              // only send heartbeat to admin (first phone)
+              sms_helper.send(REPORT_TO_PHONES[0], `${item.title} at ${item.link}`)
+            }else{
+              REPORT_TO_PHONES.forEach(phone => {
+                sms_helper.send(phone, `${item.title} at ${item.link}`)
+              }) 
+            }
             sentLinks.push(item.link)
           }
         })
