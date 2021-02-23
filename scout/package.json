@@ -1,0 +1,15 @@
+{
+  "name": "web_content_scout",
+  "version": "1.0.0",
+  "description": "Scouting the interwebz for specific content",
+  "author": "Soroosh Ahmadi <soroosh.ahmadi@soroosh.dev>",
+  "main": "scout.js",
+  "scripts": {
+    "start": "node scout.js"
+  },
+  "dependencies": {
+    "chromedriver": "^2.46.0",
+    "selenium-webdriver": "^4.0.0-beta.1",
+    "twilio": "^3.56.0"
+  }
+}

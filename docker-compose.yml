@@ -1,0 +1,17 @@
+# For development environments only
+version: '3.7'
+
+services:
+  scout:
+    build: ./scout
+    environment:
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - REPORT_TO_PHONES=${REPORT_TO_PHONES}
+  
+  selenium:
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - 4444:4444
