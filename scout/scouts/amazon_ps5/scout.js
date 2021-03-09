@@ -1,7 +1,6 @@
 const { By, until } = require('selenium-webdriver');
 const selenium_helper = require('../selenium')
 
-
 async function findItems(){
   let PS5s = []
   const URL = 'https://www.amazon.ca/s?k=playstation+5+console&i=videogames&rh=n%3A3198031%2Cn%3A20974860011%2Cn%3A20974875011%2Cp_89%3APlaystation&dc'

@@ -15,11 +15,11 @@ async function findItems(){
 
   const hourminute = await driver.findElement(By.css(item_selector)).getAttribute('innerHTML')
 
-  if(hourminute=="11:55"){
-    return {
+  if(hourminute=="2:55"){
+    return [{
       title: `Heartbeat`,
       link: getReadableToday()
-    }
+    }]
   }
     
   return []

@@ -29,7 +29,14 @@ async function getDriver(){
   }
   return driver
 }
+async function resetDriver(){
+  if(driver){
+    await driver.quit()
+    driver = null
+  }
+}
 
 module.exports = {
-  getDriver
+  getDriver,
+  resetDriver
 }
